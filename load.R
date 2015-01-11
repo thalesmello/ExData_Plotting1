@@ -1,0 +1,10 @@
+file <- read.table("household_power_consumption.txt", header = T, sep = ";", stringsAsFactors = F)
+file$Date <- as.Date(file$Date, format = "%d/%m/%Y")
+file <- file[file$Date >= as.Date("2007-02-01") & file$Date <= as.Date("2007-02-02"), ]
+file$Global_active_power <- as.numeric(file$Global_active_power)
+file$DateTime <- strptime(paste(file$Date, file$Time), format = "%Y-%m-%d %H:%M:%S")
+file$Sub_metering_1 <- as.numeric(file$Sub_metering_1)
+file$Sub_metering_2 <- as.numeric(file$Sub_metering_2)
+file$Sub_metering_3 <- as.numeric(file$Sub_metering_3)
+file$Voltage <- as.numeric(file$Voltage)
+Sys.setlocale("LC_TIME", "English")
